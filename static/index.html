@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>見積・受発注書類OCR</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header>
+  <h1>見積・受発注書類OCR</h1>
+  <p class="sub">見積依頼書・注文書・仕入先見積書・図面をアップロードして自動で項目を読み取ります</p>
+</header>
+
+<main>
+  <section class="panel">
+    <h2>1. 書類種別を選ぶ</h2>
+    <div class="doc-type-tabs" id="docTypeTabs">
+      <button type="button" class="doc-type-btn active" data-value="rfq">見積依頼書</button>
+      <button type="button" class="doc-type-btn" data-value="customer_order">客先注文書</button>
+      <button type="button" class="doc-type-btn" data-value="supplier_quote">仕入先見積書</button>
+      <button type="button" class="doc-type-btn" data-value="drawing">図面</button>
+    </div>
+
+    <h2>2. ファイルを選ぶ</h2>
+    <div class="dropzone" id="dropzone">
+      <input type="file" id="fileInput" accept=".pdf,.jpg,.jpeg,.png,.webp" multiple hidden />
+      <p>ここにファイルをドラッグ＆ドロップ、またはクリックして選択<br /><small>PDF / JPG / PNG / WEBP（複数ページのPDFは5ページまで対応）</small></p>
+    </div>
+    <div id="previewList" class="preview-list"></div>
+
+    <button type="button" id="extractBtn" class="primary-btn" disabled>この内容を読み取る</button>
+    <div id="status" class="status"></div>
+  </section>
+
+  <section class="panel" id="resultPanel" hidden>
+    <h2>3. 読み取り結果（内容を確認・修正してください）</h2>
+    <div id="notesBox" class="notes-box" hidden></div>
+
+    <h3>ヘッダー情報</h3>
+    <div class="header-grid" id="headerGrid"></div>
+
+    <h3>明細</h3>
+    <div class="table-wrap">
+      <table id="itemsTable">
+        <thead>
+          <tr>
+            <th>品番</th><th>品名</th><th>材質</th><th>図面番号</th><th>Rev</th>
+            <th>数量</th><th>単位</th><th>単価</th><th>金額</th><th>納期</th>
+            <th>表面処理</th><th>公差</th><th>備考</th><th></th>
+          </tr>
+        </thead>
+        <tbody id="itemsBody"></tbody>
+      </table>
+    </div>
+    <button type="button" id="addRowBtn" class="secondary-btn">＋ 行を追加</button>
+
+    <div class="action-row">
+      <button type="button" id="saveBtn" class="primary-btn">履歴に保存</button>
+      <button type="button" id="downloadCsvBtn" class="secondary-btn">この結果をCSV出力</button>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>履歴</h2>
+    <div class="action-row">
+      <button type="button" id="downloadAllCsvBtn" class="secondary-btn">履歴を全件CSV出力</button>
+      <button type="button" id="clearHistoryBtn" class="secondary-btn danger">履歴を全削除</button>
+    </div>
+    <div class="table-wrap">
+      <table id="historyTable">
+        <thead>
+          <tr><th>保存日時</th><th>種別</th><th>取引先</th><th>書類番号</th><th>件数</th><th>ファイル名</th><th></th></tr>
+        </thead>
+        <tbody id="historyBody"></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>

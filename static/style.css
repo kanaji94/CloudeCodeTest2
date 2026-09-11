@@ -1,0 +1,229 @@
+:root {
+  color-scheme: light dark;
+  --bg: #f7f7f8;
+  --panel: #ffffff;
+  --text: #1a1a1a;
+  --muted: #666;
+  --border: #ddd;
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --danger: #dc2626;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #121212;
+    --panel: #1e1e1e;
+    --text: #eee;
+    --muted: #999;
+    --border: #333;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  padding-bottom: 3rem;
+}
+
+header {
+  padding: 1.5rem 1rem 1rem;
+  text-align: center;
+}
+
+header h1 { margin: 0 0 0.25rem; font-size: 1.4rem; }
+header .sub { margin: 0; color: var(--muted); font-size: 0.85rem; }
+
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem;
+}
+
+.panel h2 { font-size: 1rem; margin: 0 0 0.75rem; }
+.panel h3 { font-size: 0.9rem; margin: 1rem 0 0.5rem; color: var(--muted); }
+
+.doc-type-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.doc-type-btn {
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.doc-type-btn.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.dropzone {
+  border: 2px dashed var(--border);
+  border-radius: 10px;
+  padding: 2rem 1rem;
+  text-align: center;
+  cursor: pointer;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.dropzone.dragover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.preview-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.preview-list img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.preview-list .file-chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90px;
+  height: 90px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.7rem;
+  text-align: center;
+  padding: 0.25rem;
+  word-break: break-all;
+}
+
+.primary-btn, .secondary-btn {
+  padding: 0.6rem 1.1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.primary-btn {
+  background: var(--accent);
+  color: #fff;
+  margin-top: 1rem;
+}
+
+.primary-btn:hover:not(:disabled) { background: var(--accent-hover); }
+.primary-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.secondary-btn {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--text);
+}
+
+.secondary-btn.danger { color: var(--danger); border-color: var(--danger); }
+
+.status {
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+  min-height: 1.2em;
+}
+
+.status.error { color: var(--danger); }
+
+.notes-box {
+  background: rgba(234, 179, 8, 0.15);
+  border: 1px solid rgba(234, 179, 8, 0.5);
+  border-radius: 8px;
+  padding: 0.6rem 0.8rem;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.header-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.75rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.field label {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.field input, .field textarea, table input {
+  padding: 0.45rem 0.55rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 0.85rem;
+  width: 100%;
+}
+
+.table-wrap { overflow-x: auto; margin-top: 0.5rem; }
+
+table { border-collapse: collapse; width: 100%; min-width: 720px; }
+
+th, td {
+  border: 1px solid var(--border);
+  padding: 0.35rem;
+  font-size: 0.8rem;
+  text-align: left;
+}
+
+th { background: rgba(128,128,128,0.1); white-space: nowrap; }
+
+table input { min-width: 80px; border: none; background: transparent; padding: 0.2rem; }
+table input:focus { background: var(--panel); outline: 1px solid var(--accent); }
+
+.action-row {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.row-delete-btn {
+  background: transparent;
+  border: none;
+  color: var(--danger);
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+#historyBody tr { cursor: pointer; }
+#historyBody tr:hover { background: rgba(37, 99, 235, 0.08); }
